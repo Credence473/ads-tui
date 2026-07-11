@@ -154,8 +154,9 @@ After selecting one or more papers:
 | `s` | Save BibTeX |
 | `a` | Append BibTeX to `references.bib` |
 | `p` | Download PDF |
+| `o` | Open PDF |
 | `d` | Copy DOI |
-| `o` | Open ADS page |
+| `u` | Open ADS page |
 | `q` | Quit |
 
 ---
@@ -179,9 +180,9 @@ prefer_arxiv = true
 
 cache_days = 30
 
-download_dir = "~/Papers"
+download_dir = "~/Downloads/Paper"
 
-default_bib = "~/Documents/references.bib"
+default_bib = "~/Downloads/Paper/references.bib"
 ```
 
 ---
