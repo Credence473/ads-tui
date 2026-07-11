@@ -19,7 +19,18 @@ from .models import Paper
 
 app = typer.Typer(
     name="ads-tui",
-    help="Search ADS papers from the terminal.",
+    help="""
+    Search ADS papers from the terminal.
+    The query can be a simple string or a comma-separated list of field:value pairs. For example: 'author:Smith,year:2020'.
+    The following shorthands are also available for common fields:
+    'a' for author,
+    'fa' for first_author,
+    'abs' for abstract,
+    'y' for year,
+    'ft' for full text, and
+    'pub' for publication.
+    Additionally, the keyword 'astro' can be used to filter results to the astronomy collection. Example: 'astro,author:Smith,year:2020'.
+    """,
 )
 
 console = Console()
@@ -42,7 +53,16 @@ def search(
     ),
 ):
     """
-    Search ADS and perform actions.
+    Search ADS papers from the terminal.
+    The query can be a simple string or a comma-separated list of field:value pairs. For example: 'author:Smith,year:2020'.
+    The following shorthands are also available for common fields:
+    'a' for author,
+    'fa' for first_author,
+    'abs' for abstract,
+    'y' for year,
+    'ft' for full text, and
+    'pub' for publication.
+    Additionally, the keyword 'astro' can be used to filter results to the astronomy collection. Example: 'astro,author:Smith,year:2020'.
     """
 
     asyncio.run(
@@ -52,6 +72,34 @@ def search(
             multi,
         )
     )
+
+
+def parse_query(query: str) -> str:
+    shorthands = {
+        "a": "author",
+        "fa": "first_author",
+        "abs": "abstract",
+        "y": "year",
+        "ft": "full",
+        "pub": "bibstem",
+    }
+
+    fields = query.split(",")
+    parsed_query = ""
+    for field in fields:
+        if ":" in field:
+            key, value = field.split(":", 1)
+            key = key.strip()
+            value = value.strip()
+            if key in shorthands:
+                parsed_query += f"{shorthands[key]}:{value} "
+            else:
+                parsed_query += f"{key}:{value} "
+        elif field.strip() == "astro":
+            parsed_query += "collection:astronomy "
+        else:
+            parsed_query += f"{field} "
+    return parsed_query.strip()
 
 
 async def _search(
@@ -65,6 +113,10 @@ async def _search(
     require_token(config)
 
     cache = Cache(max_age_days=config.cache_days)
+    _original_query = query.strip()
+    query = parse_query(query)
+    if query != _original_query:
+        console.print(f"[bold]Parsed Query:[/bold] {query}")
 
     async with ADSClient(config.token) as api:
 

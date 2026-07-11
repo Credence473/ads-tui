@@ -104,17 +104,33 @@ token = "your_token_here"
 ---
 
 # Usage
+Search ADS papers from the terminal.
+The query can be a simple string or a comma-separated list of field:value pairs. For example: 'author:Smith,year:2020'.
+The following shorthands are also available for common fields:
+'a' for author,
+'fa' for first_author,
+'abs' for abstract,
+'y' for year,
+'ft' for full text, and
+'pub' for publication.
+Additionally, the keyword 'astro' can be used to filter results to the astronomy collection. Example: 'astro,author:Smith,year:2020'.
 
 ## Search ADS
 
 ```bash
-ads-tui search "magneto asteroseismology"
+ads-tui "magneto asteroseismology"
 ```
 
 or
 
 ```bash
-ads-tui search "delta scuti magnetic fields"
+ads-tui "first_author:Casamiquela,year:2024,author:Jash,astro"
+```
+
+or
+
+```bash
+ads-tui "fa:Casamiquela,y:2024,a:Jash,astro"
 ```
 
 ## Change the number of results
@@ -124,7 +140,7 @@ The default is **10 papers**.
 For example:
 
 ```bash
-ads-tui search "TESS asteroseismology" -n 25
+ads-tui "TESS asteroseismology" -n 25
 ```
 
 ## Multiple selection
@@ -132,7 +148,7 @@ ads-tui search "TESS asteroseismology" -n 25
 Enable multi-selection:
 
 ```bash
-ads-tui search "PLATO stellar oscillations" --multi
+ads-tui "PLATO stellar oscillations" --multi
 ```
 
 Inside `fzf`:
@@ -214,7 +230,7 @@ cache_days = 30
 Search:
 
 ```bash
-ads-tui search "fossil magnetic fields hot stars"
+ads-tui "fossil magnetic fields hot stars"
 ```
 
 Select papers:
