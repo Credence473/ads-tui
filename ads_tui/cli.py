@@ -154,8 +154,9 @@ Choose action:
     (s) Save BibTeX
     (a) Append BibTeX
     (p) Download PDF
+    (o) Open PDF
     (d) Copy DOI
-    (o) Open ADS
+    (u) Open ADS
     (q) Quit
 """,
             choices=[
@@ -163,8 +164,9 @@ Choose action:
                 "s",
                 "a",
                 "p",
-                "d",
                 "o",
+                "d",
+                "u",
                 "q",
             ],
         )
@@ -203,6 +205,19 @@ Choose action:
             console.print("[green]DOI copied[/green]")
 
         elif choice == "o":
+
+            res = actions.open_pdf(papers[0])
+            if res:
+                console.print(f"[red] PDF not downloaded yet. Downloading now...[/red]")
+                files = await actions.download_pdf(papers)
+                for f in files:
+                    console.print(f"Downloaded: {f}")
+                if files:
+                    actions.open_pdf(papers[0])
+                else:
+                    console.print("[red]No PDFs found[/red]")
+
+        elif choice == "u":
 
             actions.open_ads(papers[0])
 

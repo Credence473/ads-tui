@@ -212,10 +212,10 @@ class PaperActions:
     def open_pdf(
         self,
         paper: Paper,
-    ) -> None:
+    ) -> int:
 
         if not paper.local_pdf:
-            raise ActionError("PDF has not been downloaded")
+            return 1
 
         subprocess.Popen(
             [
@@ -223,6 +223,7 @@ class PaperActions:
                 str(paper.local_pdf),
             ]
         )
+        return 0
 
     # ---------------------------------------------------------
     # Helpers
