@@ -38,10 +38,10 @@ prefer_arxiv = true
 cache_days = 30
 
 # Directory where PDFs are downloaded
-download_dir = "~/Papers"
+download_dir = "~/Downloads/Papers"
 
 # Default bibliography file
-default_bib = "~/Documents/references.bib"
+default_bib = "~/Downloads/Papers/references.bib"
 """.strip()
 
 
@@ -55,9 +55,9 @@ class Config:
 
     cache_days: int = 30
 
-    download_dir: Path = Path("~/Papers").expanduser()
+    download_dir: Path = Path("~/Downloads/Papers").expanduser()
 
-    default_bib: Path = Path("~/Documents/references.bib").expanduser()
+    default_bib: Path = download_dir / "references.bib"
 
 
 def ensure_directories() -> None:
@@ -106,9 +106,9 @@ def load_config() -> Config:
         results=int(cfg.get("results", 10)),
         prefer_arxiv=bool(cfg.get("prefer_arxiv", True)),
         cache_days=int(cfg.get("cache_days", 30)),
-        download_dir=Path(cfg.get("download_dir", "~/Papers")).expanduser(),
+        download_dir=Path(cfg.get("download_dir", "~/Downloads/Papers")).expanduser(),
         default_bib=Path(
-            cfg.get("default_bib", "~/Documents/references.bib")
+            cfg.get("default_bib", "~/Downloads/Papers/references.bib")
         ).expanduser(),
     )
 
