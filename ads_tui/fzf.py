@@ -8,6 +8,7 @@ import os
 import subprocess
 import tempfile
 from pathlib import Path
+import json
 
 from .models import Paper
 
@@ -84,10 +85,13 @@ class FZFSelector:
         ) as f:
 
             preview_file = Path(f.name)
+            data = {
+                f"{paper.bibcode}": self._preview_text(paper) + "\n" for paper in papers
+            }
+            json.dump(data, f, indent=4, ensure_ascii=False)
 
-            for paper in papers:
-                f.write(self._preview_text(paper) + "\n")
-
+        script_dir = Path(__file__).parent
+        preview_script = script_dir / "preview.py"
         command = [
             "fzf",
             "--ansi",
@@ -100,7 +104,7 @@ class FZFSelector:
             "--with-nth",
             "2..",
             "--preview",
-            ("grep -A100 " "'{1}' " f"{preview_file}"),
+            f"python3 {preview_script} {preview_file} {{1}}",
             "--preview-window",
             "right:50%",
         ]
@@ -142,21 +146,21 @@ class FZFSelector:
             [
                 paper.bibcode,
                 "",
-                f"Title: {paper.title}",
+                f"[green]Title:[/green] [bold]{paper.title}[/bold]",
                 "",
-                f"Authors: {paper.author_string}",
+                f"[green]Authors:[/green] {paper.author_string}",
                 "",
-                f"Journal: {paper.journal}",
-                f"Year: {paper.year}",
+                f"[green]Journal:[/green] {paper.journal}",
+                f"[green]Year:[/green] {paper.year}",
                 "",
-                f"DOI: {paper.doi}",
+                f"[green]DOI:[/green] [blue underline]{paper.doi}[/]",
                 "",
-                f"Citations: {paper.citation_count}",
+                f"[green]Citations:[/green] {paper.citation_count}",
                 "",
-                f"Keywords: {keywords}",
+                f"[green]Keywords:[/green] {keywords}",
                 "",
-                "Abstract:",
-                abstract,
+                "[green]Abstract:[/green]",
+                f"{abstract}",
                 "",
             ]
         )
