@@ -261,3 +261,5 @@ Planned features:
 
 - Search by first author, author, year, or journal
 - Citation graph exploration
+
+![License](https://img.shields.io/badge/license-MIT-green.svg)
