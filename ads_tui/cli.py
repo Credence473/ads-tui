@@ -150,13 +150,13 @@ async def action_menu(
             """
 Choose action:
 
-    [b] BibTeX copy
-    [s] Save BibTeX
-    [a] Append BibTeX
-    [p] Download PDF
-    [d] Copy DOI
-    [o] Open ADS
-    [q] Quit
+    (b) BibTeX copy
+    (s) Save BibTeX
+    (a) Append BibTeX
+    (p) Download PDF
+    (d) Copy DOI
+    (o) Open ADS
+    (q) Quit
 """,
             choices=[
                 "b",
