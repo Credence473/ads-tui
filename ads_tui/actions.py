@@ -158,7 +158,10 @@ class PaperActions:
             if not url:
                 continue
 
-            filename = self._safe_filename(paper) + ".pdf"
+            if url.endswith("EPRINT_PDF"):
+                filename = self._safe_filename(paper) + "_eprint.pdf"
+            else:
+                filename = self._safe_filename(paper) + ".pdf"
 
             path = destination / filename
 

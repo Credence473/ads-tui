@@ -193,6 +193,8 @@ Choose action:
 
             for f in files:
                 console.print(f"Downloaded: {f}")
+            if not files:
+                console.print("[red]No PDFs found[/red]")
 
         elif choice == "d":
 

@@ -155,14 +155,18 @@ class ADSClient:
 
         # arXiv
         for item in identifiers:
-            if isinstance(item, str) and item.lower() == "eprint":
+            if isinstance(item, str) and item.lower() == "pub_pdf":
+                return (
+                    "https://ui.adsabs.harvard.edu/link_gateway/" f"{bibcode}/PUB_PDF"
+                )
+            elif isinstance(item, str) and item.lower() == "eprint_pdf":
                 return (
                     "https://ui.adsabs.harvard.edu/link_gateway/"
                     f"{bibcode}/EPRINT_PDF"
                 )
-
-        # publisher
-        return "https://ui.adsabs.harvard.edu/link_gateway/" f"{bibcode}/PUB_PDF"
+            else:
+                continue
+        return None
 
     # ------------------------------------------------------------
     # Internal conversion
