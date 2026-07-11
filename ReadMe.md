@@ -262,4 +262,7 @@ Planned features:
 - Search by first author, author, year, or journal
 - Citation graph exploration
 
+# Acknowledgements
+This project uses the [NASA ADS API](https://ui.adsabs.harvard.edu/help/api/).
+
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
