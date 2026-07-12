@@ -7,6 +7,7 @@ from __future__ import annotations
 from typing import Any
 
 import httpx
+from . import __version__
 
 from .models import Paper
 
@@ -26,6 +27,8 @@ class ADSClient:
             base_url=BASE_URL,
             headers={
                 "Authorization": f"Bearer {token}",
+                "User-Agent": "ads-tui/{}".format(__version__),
+                "Content-Type": "application/json",
             },
             timeout=timeout,
         )
