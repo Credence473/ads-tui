@@ -124,7 +124,7 @@ async def _search(
         # Search
         # --------------------------------------------------
 
-        papers = cache.get_search(query)
+        papers = cache.get_search(query, results or config.results)
 
         if papers:
 
@@ -141,6 +141,7 @@ async def _search(
 
             cache.save_search(
                 query,
+                results or config.results,
                 papers,
             )
 

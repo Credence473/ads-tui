@@ -41,6 +41,7 @@ class Cache:
         cur.execute("""
             CREATE TABLE IF NOT EXISTS searches (
                 query TEXT PRIMARY KEY,
+                results INTEGER NOT NULL,
                 timestamp INTEGER NOT NULL,
                 results_json TEXT NOT NULL
             )
@@ -104,6 +105,7 @@ class Cache:
     def get_search(
         self,
         query: str,
+        results: int,
     ) -> list[Paper] | None:
 
         row = self.conn.execute(
@@ -111,8 +113,9 @@ class Cache:
             SELECT timestamp, results_json
             FROM searches
             WHERE query = ?
+            AND results = ?
             """,
-            (query,),
+            (query, results),
         ).fetchone()
 
         if row is None:
@@ -128,6 +131,7 @@ class Cache:
     def save_search(
         self,
         query: str,
+        results: int,
         papers: list[Paper],
     ) -> None:
 
@@ -136,10 +140,11 @@ class Cache:
         self.conn.execute(
             """
             INSERT OR REPLACE INTO searches
-            VALUES (?, ?, ?)
+            VALUES (?, ?, ?, ?)
             """,
             (
                 query,
+                results,
                 int(time.time()),
                 payload,
             ),
