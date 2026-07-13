@@ -46,24 +46,23 @@ sudo apt install fzf
 Or follow the instructions at [fzf GitHub](https://github.com/junegunn/fzf#installation).
 
 
-## Install from source
+## Install `ads-tui`:
 
-Clone the repository:
+```bash 
+pip install git+https://github.com/Credence473/ads-tui.git
+```
+
+Or using `uv`:
 
 ```bash
-git clone https://github.com/<username>/ads-tui.git
+uv tool install git+https://github.com/Credence473/ads-tui.git
+```
+
+Or for development:
+
+```bash
+git clone https://github.com/Credence473/ads-tui.git
 cd ads-tui
-```
-
-Install:
-
-```bash
-pip install .
-```
-
-For development:
-
-```bash
 pip install -e .
 ```
 
