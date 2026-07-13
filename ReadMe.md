@@ -129,7 +129,7 @@ ads-tui "first_author:Casamiquela,year:2024,author:Jash,astro"
 or
 
 ```bash
-ads-tui "fa:Casamiquela,y:2024,a:Jash,astro"
+ads-tui "fa:Catala,y:2007,a:Donati,astro"
 ```
 
 ## Change the number of results
@@ -154,7 +154,7 @@ Inside `fzf`:
 
 | Key | Action |
 |------|--------|
-| `SPACE` | Select paper |
+| `TAB` | Select paper |
 | `ENTER` | Confirm selection |
 
 ---
@@ -221,44 +221,6 @@ Default cache lifetime:
 ```toml
 cache_days = 30
 ```
-
----
-
-# Example Workflow
-
-Search:
-
-```bash
-ads-tui "fossil magnetic fields hot stars"
-```
-
-Select papers:
-
-```text
-2025 Smith et al. Magnetic fields in B stars
-2024 Neiner et al. Fossil fields and rotation
-```
-
-Press:
-
-```text
-b
-```
-
-BibTeX is copied to the clipboard:
-
-```bibtex
-@ARTICLE{2025ApJ....
-...
-}
-```
-
-Paste directly into your manuscript:
-
-```latex
-\cite{2025ApJ....}
-```
-
 ---
 
 # Development
@@ -266,7 +228,7 @@ Paste directly into your manuscript:
 Run locally:
 
 ```bash
-python -m ads_tui.cli search "asteroseismology"
+python -m ads_tui.cli "asteroseismology"
 ```
 
 ---
@@ -275,8 +237,8 @@ python -m ads_tui.cli search "asteroseismology"
 
 Planned features:
 
-- Search by first author, author, year, or journal
-- Citation graph exploration
+- [x] Search by first author, author, year, or journal
+- [ ] Citation graph exploration
 
 # Acknowledgements
 This project uses the [NASA ADS API](https://ui.adsabs.harvard.edu/help/api/).
