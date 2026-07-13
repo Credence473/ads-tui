@@ -16,6 +16,14 @@ from .cache import Cache
 from .config import Config
 from .models import Paper
 
+headers = {
+    "User-Agent": (
+        "Mozilla/5.0 (X11; Linux x86_64) "
+        "AppleWebKit/537.36 (KHTML, like Gecko) "
+        "Chrome/138.0 Safari/537.36"
+    )
+}
+
 
 class ActionError(RuntimeError):
     pass
@@ -183,6 +191,7 @@ class PaperActions:
     ) -> None:
 
         async with httpx.AsyncClient(
+            headers=headers,
             follow_redirects=True,
             timeout=60,
         ) as client:
