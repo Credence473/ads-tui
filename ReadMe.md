@@ -2,7 +2,7 @@
 
 A terminal user interface for searching NASA ADS papers, selecting papers with `fzf`, downloading PDFs, and managing BibTeX references.
 
-Designed for astronomers who prefer working from the terminal.
+Designed for astronomers who prefer working from the terminal. This may be a preferable workflow when working with a LaTeX document using a terminal emulator for example. It is also useful for quickly searching and downloading papers without opening a web browser.
 
 ---
 
@@ -18,11 +18,12 @@ Designed for astronomers who prefer working from the terminal.
   - Citation count
   - Keywords
 - Download PDFs
+- Open PDF (only opens first selection in multi mode)
 - Export BibTeX
 - Copy BibTeX to the clipboard
 - Append references to an existing `.bib` file
 - Copy DOI
-- Open ADS pages in a browser
+- Open ADS page in a browser (only opens first selection in multi mode)
 - SQLite caching of searches and metadata
 
 ---
@@ -33,7 +34,8 @@ Designed for astronomers who prefer working from the terminal.
 
 - Python 3.11 or newer
 - `fzf`
-- `xdg-open` (Linux)
+- `xdg-open` (Available on Linux systems. See note below for Other OS)
+
 
 ### Install `fzf`
 
@@ -43,7 +45,16 @@ Designed for astronomers who prefer working from the terminal.
 sudo apt install fzf
 ```
 
+#### Fedora
+
+```bash
+sudo dnf install fzf
+```
+
 Or follow the instructions at [fzf GitHub](https://github.com/junegunn/fzf#installation).
+
+### Install `xdg-open`
+Most Linux distributions come with `xdg-open` pre-installed. If not, install the `xdg-utils` package using your package manager.
 
 
 ## Install `ads-tui`:
@@ -65,6 +76,7 @@ git clone https://github.com/Credence473/ads-tui.git
 cd ads-tui
 pip install -e .
 ```
+
 
 ---
 
@@ -123,7 +135,7 @@ ads-tui "magneto asteroseismology"
 or
 
 ```bash
-ads-tui "first_author:Casamiquela,year:2024,author:Jash,astro"
+ads-tui "first_author:Catala,year:2007,author:Donati,astro"
 ```
 
 or
@@ -239,6 +251,10 @@ Planned features:
 
 - [x] Search by first author, author, year, or journal
 - [ ] Citation graph exploration
+
+# Notes for Other OS
+ - This project is developed for Linux. It should work on MacOS if the `xdg-open` command is replaced with `open` in the code. You are free to use it that way, but I take no responsibility as I don't own a Mac to test it. If you are willing to maintain a MacOS version, please fork it. 
+ - If you are using windows, using ads-tui on that sluggish terminal is almost the same (I imagine) as using ADS in the browser. So, I will not try to make it work on Windows.
 
 # Acknowledgements
 This project uses the [NASA ADS API](https://ui.adsabs.harvard.edu/help/api/).
