@@ -33,6 +33,7 @@ Designed for astronomers who prefer working from the terminal. This may be a pre
 ## Requirements
 
 - Python 3.11 or newer
+- `pip` (You may or may not be able to use your system's `pip` depending on your system. In the latter case, you can create a virtual environment and install `ads-tui` there, use a `conda` environment, or use `uv` to install it in a environment.)
 - `fzf`
 - `xdg-open` (Available on Linux systems. See note below for Other OS)
 
@@ -80,7 +81,9 @@ pip install -e .
 
 ---
 
-# ADS API Token
+# Configuration
+
+## ADS API Token
 
 ADS requires an API token.
 
@@ -110,6 +113,29 @@ Example:
 
 ```toml
 token = "your_token_here"
+
+## More configuration
+
+Configuration file:
+
+```text
+~/.config/ads-tui/config.toml
+```
+
+Example:
+
+```toml
+token = ""
+
+results = 10
+
+prefer_arxiv = true
+
+cache_days = 30
+
+download_dir = "~/Downloads/Paper"
+
+default_bib = "~/Downloads/Paper/references.bib"
 ```
 
 ---
@@ -188,31 +214,6 @@ After selecting one or more papers:
 
 ---
 
-# Configuration
-
-Configuration file:
-
-```text
-~/.config/ads-tui/config.toml
-```
-
-Example:
-
-```toml
-token = ""
-
-results = 10
-
-prefer_arxiv = true
-
-cache_days = 30
-
-download_dir = "~/Downloads/Paper"
-
-default_bib = "~/Downloads/Paper/references.bib"
-```
-
----
 
 # Cache
 
@@ -251,6 +252,7 @@ Planned features:
 
 - [x] Search by first author, author, year, or journal
 - [ ] Citation graph exploration
+- [ ] Prefer arxiv option does not work yet. It is planned to be implemented in the future.
 
 # Notes for Other OS
  - This project is developed for Linux. It should work on MacOS if the `xdg-open` command is replaced with `open` in the code. You are free to use it that way, but I take no responsibility as I don't own a Mac to test it. If you are willing to maintain a MacOS version, please fork it. 
