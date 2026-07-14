@@ -259,16 +259,19 @@ Choose action:
 
         elif choice == "o":
 
-            res = actions.open_pdf(papers[0])
-            if res:
-                console.print(f"[red] PDF not downloaded yet. Downloading now...[/red]")
-                files = await actions.download_pdf(papers)
-                for f in files:
-                    console.print(f"Downloaded: {f}")
-                if files:
-                    actions.open_pdf(papers[0])
-                else:
-                    console.print("[red]No PDFs found[/red]")
+            fail = actions.open_pdf(papers[0])
+            if fail:
+                try:
+                    files = await actions.download_pdf(papers)
+                    for f in files:
+                        console.print(f"Downloaded: {f}")
+                    if files:
+                        actions.open_pdf(papers[0])
+                    else:
+                        console.print("[red]No PDFs found[/red]")
+                except Exception:
+                    console.print("[yellow]Opening in browser[/yellow]")
+                    await actions.open_pdf_link(papers[0])
 
         elif choice == "u":
 

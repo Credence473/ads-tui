@@ -239,6 +239,24 @@ class PaperActions:
         )
         return 0
 
+    async def open_pdf_link(
+        self,
+        paper: Paper,
+    ) -> int:
+
+        url = await self.api.pdf_url(paper.bibcode)
+
+        if not url:
+            return 1
+
+        subprocess.Popen(
+            [
+                "xdg-open",
+                url,
+            ]
+        )
+        return 0
+
     # ---------------------------------------------------------
     # Helpers
     # ---------------------------------------------------------
