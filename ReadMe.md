@@ -63,13 +63,13 @@ Most Linux distributions come with `xdg-open` pre-installed. If not, install the
 ## Install `ads-tui`:
 
 ```bash 
-pip install git+https://github.com/Credence473/ads-tui.git
+pip install ads-tui
 ```
 
 Or using `uv`:
 
 ```bash
-uv tool install git+https://github.com/Credence473/ads-tui.git
+uv tool install ads-tui
 ```
 
 Or for development:
