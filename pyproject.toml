@@ -1,9 +1,6 @@
 [build-system]
-requires = [
-    "setuptools>=68",
-    "wheel"
-]
-build-backend = "setuptools.build_meta"
+requires = ["uv_build>=0.11.28,<0.12"]
+build-backend = "uv_build"
 
 
 [project]
@@ -27,16 +24,29 @@ dependencies = [
     "pyperclip>=1.9",
     "pydantic>=2.7"
 ]
+keywords = ["ads", "nasa", "tui", "cli", "papers", "astronomy", "astrophysics", "research"]
+classifiers = [
+  #   3 - Alpha
+  #   4 - Beta
+  #   5 - Production/Stable
+  "Development Status :: 3 - Alpha",
+
+  "Intended Audience :: Researchers",
+  "Topic :: Researchers :: Bibliographic Databases",
+
+  "Programming Language :: Python :: 3.11",
+]
+[project.urls]
+Repository = "https://github.com/Credence473/ads-tui"
 
 
 [project.scripts]
 ads-tui = "ads_tui.cli:app"
 
 
-[tool.setuptools.packages.find]
-where = [
-    "."
-]
+[tool.uv.build-backend]
+module-name = "ads_tui"
+module-root = "src"
 
 
 [tool.ruff]
