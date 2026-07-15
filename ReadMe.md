@@ -113,6 +113,7 @@ Example:
 
 ```toml
 token = "your_token_here"
+```
 
 ## More configuration
 
