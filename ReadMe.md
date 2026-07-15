@@ -36,6 +36,8 @@ Designed for astronomers who prefer working from the terminal. This may be a pre
 - `pip` (You may or may not be able to use your system's `pip` depending on your system. In the latter case, you can create a virtual environment and install `ads-tui` there, use a `conda` environment, or use `uv` to install it in a environment.)
 - `fzf`
 - `xdg-open` (Available on Linux systems. See note below for Other OS)
+- An web browser (for opening ADS pages and PDFs)
+- A terminal emulator with true color support (e.g. `alacritty`, `kitty`, `wezterm`, `ghostty`, `gnome-terminal`, `konsole`, etc.)
 
 
 ### Install `fzf`
