@@ -202,14 +202,16 @@ async def action_menu(
         choice = Prompt.ask(
             """
 Choose action:
-
+    Multiple mode: 
     (b) BibTeX copy
     (s) Save BibTeX
     (a) Append BibTeX
-    (p) Download PDF
-    (o) Open PDF
     (d) Copy DOI
+
+    Single mode: (first paper in multi-selection)
+    (p) Open PDF link
     (u) Open ADS
+
     (q) Quit
 """,
             choices=[
@@ -217,7 +219,6 @@ Choose action:
                 "s",
                 "a",
                 "p",
-                "o",
                 "d",
                 "u",
                 "q",
@@ -243,38 +244,16 @@ Choose action:
             console.print(f"Appended: {path}")
 
         elif choice == "p":
-            try:
-                files = await actions.download_pdf(papers)
 
-                for f in files:
-                    console.print(f"Downloaded: {f}")
-                if not files:
-                    console.print("[red]No PDFs found[/red]")
-            except Exception:
-                console.print("[yellow]Opening in browser[/yellow]")
-                await actions.open_pdf_link(papers[0])
+            console.print("[yellow]Opening PDF in browser[/yellow]")
+
+            await actions.open_pdf_link(papers[0])
 
         elif choice == "d":
 
             actions.copy_doi(papers)
 
             console.print("[green]DOI copied[/green]")
-
-        elif choice == "o":
-
-            fail = actions.open_pdf(papers[0])
-            if fail:
-                try:
-                    files = await actions.download_pdf(papers)
-                    for f in files:
-                        console.print(f"Downloaded: {f}")
-                    if files:
-                        actions.open_pdf(papers[0])
-                    else:
-                        console.print("[red]No PDFs found[/red]")
-                except Exception:
-                    console.print("[yellow]Opening in browser[/yellow]")
-                    await actions.open_pdf_link(papers[0])
 
         elif choice == "u":
 

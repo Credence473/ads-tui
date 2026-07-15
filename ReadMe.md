@@ -209,9 +209,8 @@ After selecting one or more papers:
 | `b` | Copy BibTeX |
 | `s` | Save BibTeX |
 | `a` | Append BibTeX to `references.bib` |
-| `p` | Download PDF |
-| `o` | Open PDF |
 | `d` | Copy DOI |
+| `p` | Open PDF link |
 | `u` | Open ADS page |
 | `q` | Quit |
 

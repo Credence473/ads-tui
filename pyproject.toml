@@ -5,7 +5,7 @@ build-backend = "uv_build"
 
 [project]
 name = "ads-tui"
-version = "0.1.2"
+version = "0.1.3"
 description = "A terminal user interface for searching NASA ADS papers"
 license = "MIT"
 license-files = ["LICENSE"]
