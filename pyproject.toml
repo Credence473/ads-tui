@@ -5,7 +5,7 @@ build-backend = "uv_build"
 
 [project]
 name = "ads-tui"
-version = "0.1.1"
+version = "0.1.2"
 description = "A terminal user interface for searching NASA ADS papers"
 license = "MIT"
 license-files = ["LICENSE"]
@@ -31,8 +31,10 @@ classifiers = [
   #   5 - Production/Stable
   "Development Status :: 3 - Alpha",
 
-  "Intended Audience :: Researchers",
-  "Topic :: Researchers :: Bibliographic Databases",
+  "Intended Audience :: Science/Research",
+  "Topic :: Scientific/Engineering :: Astronomy",
+  "Topic :: Scientific/Engineering :: Physics",
+  "License :: OSI Approved :: MIT License",
 
   "Programming Language :: Python :: 3.11",
 ]
