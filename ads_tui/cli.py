@@ -243,13 +243,16 @@ Choose action:
             console.print(f"Appended: {path}")
 
         elif choice == "p":
+            try:
+                files = await actions.download_pdf(papers)
 
-            files = await actions.download_pdf(papers)
-
-            for f in files:
-                console.print(f"Downloaded: {f}")
-            if not files:
-                console.print("[red]No PDFs found[/red]")
+                for f in files:
+                    console.print(f"Downloaded: {f}")
+                if not files:
+                    console.print("[red]No PDFs found[/red]")
+            except Exception:
+                console.print("[yellow]Opening in browser[/yellow]")
+                await actions.open_pdf_link(papers[0])
 
         elif choice == "d":
 
